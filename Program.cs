@@ -9,33 +9,43 @@ namespace TestSaber
     {
         static void Main(string[] args)
         {
-            while (true) 
-            {
+            while (true) {
                 var num = new Number();
                 var numBit = "";
-                var result =  num.Sign == 1 ?  "11111" : "00000";
+                var result = num.Sign == 1 ? "11111" : "00000";
                 // num.Read();
-                do
-                {
+                do {
                     var el = (num.ModValue - num.Sign);
 
-                    numBit += (el* num.Multiplier).ToString();
+                    numBit += (el * num.Multiplier).ToString();
                     num.DivValue /= 2;
                 }
                 while (num.DivValue != 0);
 
-                for (int i = numBit.Length-1; i >= 0;  i--) {
+                for (int i = numBit.Length - 1; i >= 0; i--) {
                     result += numBit[i];
                 }
-                //num.DivValue = num.DivValue / 2;
-                //numBit.Append(num.ModValue.ToString());
-                //while (num.DivValue != 0) 
-                //{
-                //    numBit.Append(num.ModValue.ToString());
-                //    num.DivValue = num.DivValue / 2;
-                //}
-                Console.WriteLine(result);
-               // Console.ReadLine();
+
+                Console.WriteLine(num.Sign == 1 ? otr(result) : result);
+                // Console.ReadLine();
+            }
+
+            string otr(string str)
+            {
+                var i = str.Length;
+                var result = "";
+                while (str[i] != '0' && i > 0) {
+                    i--;
+                }
+                for (var j = 0; j < i; j++) {
+                    result += str[j];
+                }
+                result += 1;
+                for (var j = i + 1; j < str.Length; j++) {
+                    result += 0;
+                }
+                return result;
+            
             }
         }
     }
