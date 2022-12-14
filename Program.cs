@@ -12,7 +12,7 @@ namespace TestSaber
             while (true) {
                 var num = new Number();
                 var numBit = "";
-                var result = num.Sign == 1 ? "11111" : "00000";
+                var result = num.Sign == 1 ? "11111" : "";
                 // num.Read();
                 do {
                     var el = (num.ModValue - num.Sign);
@@ -26,13 +26,15 @@ namespace TestSaber
                     result += numBit[i];
                 }
 
-                Console.WriteLine(num.Sign == 1 ? otr(result) : result);
+                var res = num.Sign == 1 ? otr(result) : result;
+                Console.WriteLine(res);
                 // Console.ReadLine();
+                Console.WriteLine(Convert.ToInt16(res, 2));
             }
 
             string otr(string str)
             {
-                var i = str.Length;
+                var i = str.Length - 1;
                 var result = "";
                 while (str[i] != '0' && i > 0) {
                     i--;
@@ -41,7 +43,7 @@ namespace TestSaber
                     result += str[j];
                 }
                 result += 1;
-                for (var j = i + 1; j < str.Length; j++) {
+                for (var j = i; j < str.Length - 1; j++) {
                     result += 0;
                 }
                 return result;
