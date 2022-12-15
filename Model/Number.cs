@@ -2,9 +2,8 @@
 
 namespace TestSaber.Model
 {
-    public class Number
+    public class Number : BaseModel<int>
     {
-        public int Value { get; set; }
         public int ValueВischarge { get; private set; }
         public int DivValue { get; set; }
         public int Sign { get; private set; }
@@ -32,7 +31,7 @@ namespace TestSaber.Model
         /// Ввод числа с клавиатуры
         /// </summary> Вводит число с клавиатуры и записывает в объект Number
         /// <returns></returns>
-        public void Read()
+        public override void Read()
         {
             Console.WriteLine("Введите целое число");
             try
@@ -82,6 +81,30 @@ namespace TestSaber.Model
                 result += 0;
             }
             return result;
+        }
+
+        /// <summary>
+        /// Задача 1: Перевод в двоичную систему
+        /// </summary>
+        public override void Task()
+        {
+            var numBit = "";
+            var result = "";
+            do
+            {
+                numBit += ((ModValue - Sign) * Multiplier).ToString();
+                DivValue /= 2;
+            }
+            while (DivValue != 0);
+
+            for (int i = numBit.Length - 1; i >= 0; i--)
+            {
+                result += numBit[i];
+            }
+            var res = Sign == 1 ? NegativeNumber(result) : result;
+            var flag = Convert.ToInt32(res, 2) == Value ? "равно" : "неравно";
+            Console.WriteLine(res);
+            Console.WriteLine($"Проверка: число {res} в десятичной системе {Convert.ToInt32(res, 2)} {flag} исходному числу {Value}");
         }
     }
 }

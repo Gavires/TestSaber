@@ -1,6 +1,6 @@
 ﻿using System;
-using TestSaber.Model;
 using TestSaber.Task.Task1;
+using TestSaber.Task.Task2;
 
 namespace TestSaber
 {
@@ -8,8 +8,26 @@ namespace TestSaber
     {
         static void Main(string[] args)
         {
-            var task1 = new NumberToBin();
-            task1.Task1();
+            try
+            {
+                Console.WriteLine("Выберите задачу 1 : 2");
+                var task = Console.ReadLine();
+                switch (task)
+                {
+                    case "1":
+                        var task1 = new NumberToBin();
+                        break;
+                    case "2":
+                        var task2 = new RemoveDuosStr();
+                        break;
+                    default:
+                        throw new Exception("Нет задач с таким номером....");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }
