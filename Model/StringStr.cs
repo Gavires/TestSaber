@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace TestSaber.Model
 {
-    public class StringStr : BaseModel <string>
+    public class StringStr : BaseModel<string>
     {
         public int Length { get; private set; }
 

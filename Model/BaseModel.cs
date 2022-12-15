@@ -6,7 +6,6 @@ namespace TestSaber.Model
     {
         public T Value { get; set; }
 
-
         public virtual void Read() { }
 
         public virtual void Task() { }
